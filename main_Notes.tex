@@ -1,0 +1,546 @@
+\documentclass[a4paper]{article}
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[caption=false]{subfig}
+\setcounter{section}{-1}
+%% Useful packages
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{eqnarray}
+\usepackage{float}
+\usepackage{esint}
+\usepackage{wrapfig}
+\usepackage{gensymb}
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\cosech}{cosech}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\nullity}{nullity}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\R}{R}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\diag}{diag}
+\newtheorem{defi}{Definition}[section]
+\newtheorem{remarks}{Remarks}[section]
+\newtheorem{note}{Note}[section]
+\newtheorem{law}{Law}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{notation}{Notation}[section]
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{cor}{Corollary}[section]
+
+\definecolor{darkblue}{RGB}{	0, 0, 139}
+\newtheoremstyle{new}% <name>
+{5pt}% <Space above>
+{5pt}% <Space below>
+{\color{black}}% Body font
+{}% <Indent amount>
+{\bfseries\color{darkblue}}% Theorem head font
+{:}% <Punctuation after theorem head>
+{.5em}% <Space after theorem headi>
+{}% <Theorem head spec (can be left empty, meaning `normal')>
+\theoremstyle{new}
+\newtheorem{Note}{Note}[section]
+\title{\textbf{Part II REL Summary Notes}}
+\author{Tai Yingzhe, Tommy (ytt26)}
+\date{}
+\setlength{\parindent}{0cm}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+\subsection{Units}
+Traditionally, you may be familiar with the widespread usage of the SI units. In most textbooks, the natural units are adopted, where we set the constants of nature as 1. This unifies physical dimensions and may highlight possible breakdowns of classical (Newtonian) theories. 
+\begin{eg}[Speed of Light]
+From now on, $c=1$. For speeds $v<<c$, we recover Newtonian mechanics. But this becomes problematic at $v$ close to 1, and we thus need Special Relativity.
+\end{eg}
+\begin{eg}[Gravitational Constant]
+In addition, we further set $G=1$. In that case, 1 s $=3\times10^8$ m (from earlier) and 1 m $=1.3466\times10^{27}$ kg. In this case, the Solar mass is roughly 1.47 km (This is the Schwarzschild radius of the Sun, as we will see later). For $\frac{M}{R}<<\frac{c^2}{G}=1$, Newtonian gravity is accurate. But for $\frac{M}{R}\approx 1$, we will require General Relativity.
+\end{eg}
+\begin{eg}[Planck's Constant]
+While we do not need $\hbar$ in this course, we further demonstrate the idea of natural units by setting $\hbar=1$. In that case, $\frac{\hbar}{mc}\approx R$ regime requires Quantum Mechanics, where $\frac{\hbar}{mc}=\frac{1}{m}$ is the Comptom wavelength.
+\end{eg}
+\newpage
+\subsection{Newtonian Gravity}
+\begin{prop}
+For mutual collinear forces, the magnitude of the passive source is equal to that of the active source.
+\end{prop}
+\begin{proof}
+Follow from Newton's Third Law, together with the relevant force law.
+\end{proof}
+\begin{prop}
+Inertial mass is also the same as the active and passive mass.
+\end{prop}
+\begin{proof}
+Follows from Newton's Second Law. 
+\end{proof}
+\begin{remarks}
+Proposition 0.1 is true for both masses and electric charges, but not true for Proposition 0.2 since there is no concept of inertial charge.
+\end{remarks}
+\begin{remarks}
+The equality of gravitational mass (passive source which determines the gravitational force on the particle) and inertial mass has been experimentally verified to one part in $10^{13}$. The many experiments that verified this, led to the equivalence principles.
+\end{remarks}
+\begin{prop}[Weak Equivalence Principle (WEP)]
+Freely falling bodies with negligible gravitational self-interaction follow the same path if they have the same initial velocity and position, independent of composition.
+\end{prop}
+\begin{defi}[Local Inertial Frame]
+Local inertial frame is defined by a freely falling observer in the same way as an inertial frame is defined in Minkowski spacetime. Local means that the frame is much smaller than the length scale of gravitational field variations. 
+\end{defi}
+Einstein promoted the Weak Equivalence Principle.
+\begin{prop}[Einstein Equivalence Principle]
+In a local inertial frame, the results of all non-gravitational experiments are indistinguishable from those of the same experiment performed in an inertial frame in Minkowski spacetime.
+\end{prop}
+\begin{prop}[Strong Equivalence Principle (SEP)]
+In an arbitrary gravitational field, all the laws of physics (not just the dynamics of free-falling particles) in a free-falling, non-rotating laboratory occupying a
+sufficiently small region of spacetime look locally like
+special relativity (with no gravity).
+\end{prop}
+\begin{remarks}
+In particular, the SEP implies that a constant gravitational field is unobservable – observations in a reference frame at rest in such a field would be indistinguishable from those in a uniformly-accelerating reference frame in the absence of gravity.
+\end{remarks}
+\begin{defi}[General Relativity]
+General relativity abandons the idea of gravity as a force defined on the fixed spacetime of special relativity, replacing it with a geometric theory in which the geometry of spacetime determines the trajectories of free-falling particles, the geometry itself being curved by the presence of matter.
+\end{defi}
+\subsection{Gravitational Waves}
+\begin{defi}[Gravitational Waves]
+Gravitational waves are wavelike disturbances in the geometry of spacetime, which can be detected by looking for their characteristic quadrupole distortion (i.e., a shortening in one direction and stretching in an orthogonal direction) of the two arms of a laser interferometer.\\[5pt]
+Gravitational waves propagate at the speed of light and are a natural prediction of general relativity; they do not arise in Newtonian gravity where the potential responds instantly to distant rearrangements of mass.
+\end{defi}
+\begin{eg}
+The first LIGO signal was generated by a truly extreme astrophysical source: two merging black holes each with a mass around 30 times that of the Sun at a distance from us of around 2 Gly.\\[5pt]
+As the black holes orbited their common centre of mass, the system radiated gravitational waves causing the black holes to spiral inwards and increase their speed until they merged to form a single black hole.\\[5pt]
+Such sources probe the strong-field regime of general relativity during the merger phase and involve highly relativistic speeds. At its peak, the source was losing energy to gravitational waves at a rate of $3.6\times10^{49}$ W, which is equivalent to 200 times the rest mass energy of the Sun per second!
+\end{eg}
+\newpage
+\section{Special Relativity Recap}
+We recap the concepts from IA Special Relativity.
+\subsection{Galilean Transformations}
+\begin{defi}[Inertial frames]
+  Inertial frames are frames of references in which the frames themselves are not accelerating. Newton's Laws only hold in inertial frames.
+\end{defi}
+\begin{defi}[Galilean transformations]
+  Two inertial frames are related by
+  \begin{itemize}
+  \item Translations of space:
+    \[
+      \mathbf{r}' = \mathbf{r} - \mathbf{r}_0
+    \]
+  \item Translations of time:
+    \[
+      t' = t - t_0
+    \]
+  \item Rotation (and reflection):
+    \[
+      \mathbf{r}' = R\mathbf{r}
+    \]
+    with $R\in O(3)$.
+\end{itemize}
+\end{defi}
+They are simply symmetries of space itself.
+\begin{defi}[Galilean boost]
+  A Galilean boost is a change in frame of reference by
+  \begin{align*}
+    \mathbf{r}' &= \mathbf{r} - \mathbf{v}t\\
+    t' &= t
+  \end{align*}
+  for a fixed, constant $\mathbf{v}$, i.e. uniform motion.
+\end{defi}
+All these transformations together generate the Galilean group, which describes the symmetry of Newtonian equations of motion.
+\begin{law}[Galilean relativity]
+  The principle of relativity asserts that the laws of physics are the same in inertial frames.
+\end{law}
+\begin{remarks}
+The equations of Newtonian physics must have Galilean invariance. Since the laws of physics are the same regardless of your velocity, velocity must be a relative concept, and there is no such thing as an ``absolute velocity'' that all inertial frames agree on. However, all inertial frames must agree on whether you are accelerating or not (even though they need not agree on the direction of acceleration since you can rotate your frame). So acceleration is an absolute concept.
+\end{remarks}
+\begin{remarks}[Special Relativity]
+In special relativity, we abandon the notion of absolute time. It is replaced by a new postulate: The speed of light $c$ is the same in all inertial frames.
+\end{remarks}
+\subsection{The Lorentz transformation}
+\begin{prop}
+  Consider inertial frames $S$ and $S'$ whose origins coincide at $t = t' = 0$, and that $S'$ moves with velocity $v$ relative to $S$, then the Lorentz transformation must be of the form
+  $$x'=\gamma(x-vt)$$
+  for some factor $\gamma$.
+\end{prop}
+\begin{proof}
+ For now, neglect the $y$ and $z$ directions, and consider the relationship between $(x, t)$ and $(x', t')$. The general form is
+$$x' = f(x, t),\quad t' = g(x, t)$$
+for some functions $f$ and $g$. In any inertial frame, a free particle moves with constant velocity. So straight lines in $(x, t)$ must map into straight lines in $(x', t')$. Therefore the relationship must be linear. The line $x = vt$ must map into $x'= 0$, hence the result. We can use symmetry arguments to show that $\gamma$ should take the same value for velocities $v$ and $-v$).
+\end{proof}
+\begin{remarks}
+Now reverse the roles of the frames. From the perspective $S'$, $S$ moves with velocity $-v$. A similar argument leads to $x=\gamma(x'+vt')$ for the same $\gamma$, which is only dependent on $|v|$.
+\end{remarks}
+\begin{prop}
+  The factor $\gamma$ is called the Lorentz factor and it is called
+  $$\gamma=\frac{1}{\sqrt{1-v^2/c^2}}$$
+\end{prop}
+\begin{proof}
+Now consider a light ray (or photon) passing through the origin $x = x' = 0$ at $t = t' = 0$. Its trajectory in $S$ is
+$x = c$. We want a $\gamma$ such that the trajectory in $S'$ is $x' = ct'$ as well, so that the speed of light is the same in each frame. Substitute these into the Lorentz transformation equations and multiply them together and finally divide by $tt'$ to obtain
+$$  c^2 = \gamma^2(c^2 - v^2)\implies \gamma = \sqrt{\frac{c^2}{c^2 - v^2}} = \frac{1}{\sqrt{1 - (v/c)^2}}$$
+\end{proof}
+\begin{prop}
+  The Lorentz transformation between times in two inertial frames is
+  $$t'=\gamma(t-vx/c^2)$$
+\end{prop}
+\begin{proof}
+Eliminate $x$ between the previous two Lorentz transformation equations to obtain
+$$x = \gamma(\gamma(x - vt) + vt')\implies
+t' = \gamma t - (1 - \gamma^{-2})\frac{\gamma x}{v} = \gamma\left(t - \frac{v}{c^2}x\right)$$
+\end{proof}
+\begin{defi}[Standard Lorentz boosts]
+$$x'=\gamma(x-vt),\quad t'=\gamma(t-vx/c^2)$$
+\end{defi}
+\begin{remarks}
+Directions perpendicular to the relative motion of the frames are unaffected.
+\end{remarks}
+\begin{remarks}[Generic Lorentz boosts]
+More generally, the relation between two Cartesian inertial frames $S$ and $S'$ can differ from that for the standard configuration since
+\begin{enumerate}
+    \item the spacetime origins may not coincide, i.e. the event at $ct=x=y=z=0$ may not be at $ct'=x'=y'=z'=0$
+    \item the relative velocity of the two frames may be in an arbitrary direction in $S$, rather than along the $x$-axis
+    \item the spatial axes in $S$ and $S'$ may not be aligned
+\end{enumerate}
+The generic procedure is
+\begin{enumerate}
+    \item align the spacetime origins by appropriate temporal and spatial displacements
+    \item apply a purely spatial rotation in frame $S$ to align the new $x$-axis with the relative velocity of the two frames
+    \item apply a standard Lorentz transform
+    \item apply a spatial rotation in the transformed coordinates to align the axes with those of $S'$.
+\end{enumerate}
+\end{remarks}
+\newpage
+\subsection{Spacetime diagrams}
+It is often helpful to plot out what is happening on a diagram. We plot them on a graph, where the position $x$ is on the horizontal axis and the time $ct$ is on the vertical axis. We use $ct$ instead of $t$ so that the dimensions make sense.
+\begin{defi}[Spacetime]
+  The union of space and time in special relativity is called Minkowski spacetime. Each point $P$ represents an event, labelled by coordinates $(ct, x)$. 
+\end{defi}
+\begin{defi}[World lines]
+  A particle traces out a world line in spacetime, which is straight if the particle moves uniformly. Light rays moving in the $x$ direction have world lines inclined at $45^\circ$.
+\end{defi}
+\begin{remarks}
+We can also draw the axes of $S'$, moving in the $x$ direction at velocity $v$ relative to $S$. The $ct'$ axis corresponds to $x' = 0$, i.e.\ $x = vt$. The $x'$ axis corresponds to $t' = 0$, i.e.\ $t = vx/c^2$. Note that the $x'$ and $ct'$ axes are not orthogonal, but are symmetrical about the diagonal (dashed line). So they agree on where the world line of a light ray should lie on.
+\end{remarks}
+\begin{remarks}
+For a massive particle passing through an event A, the particle's worldline must be inside the lightcone through A and each infinitesimal step must lie within the lightcone at each point. For a photon, the worldline will be tangent to the light cone.
+\end{remarks}
+\begin{defi}[Simultaneous events]
+  We say two events $P_1$ and $P_2$ are simultaneous in the frame $S$ if $t_1 = t_2$.
+\end{defi}
+\begin{remarks}[Causality]
+Although different people may disagree on the temporal order of events, the consistent ordering of cause and effect can be ensured. Since things can only travel at at most the speed of light, $P$ cannot affect $R$ if $R$ happens a millisecond after $P$ but is at millions of galaxies away. We can draw a light cone that denotes the regions in which things can be influenced by $P$. These are the regions of space-time light (or any other particle) can possibly travel to. $P$ can only influence events within its future light cone, and be influenced by events within its past light cone.
+\end{remarks}
+\begin{defi}[Invariant interval]
+  The spacetime interval between $P$ and $Q$ is defined as
+$$\Delta s^2 = c^2 \Delta t^2 - \Delta x^2$$
+  Note that this quantity $\Delta s^2$ can be both positive or negative.
+\end{defi}
+\begin{prop}
+  All inertial observers agree on the value of $\Delta s^2$.
+\end{prop}
+\begin{proof}
+$\Delta x$ can be extended to $\mathbb{R}^3$:
+\begin{align*}
+    c^2 \Delta t'^2 - \Delta x'^2 &= c^2 \gamma^2 \left(\Delta t - \frac{v}{c^2}\Delta x\right)^2 - \gamma^2 (\Delta x - v\Delta t)^2\\
+    &= \gamma^2 \left(1 - \frac{v^2}{c^2}\right)(c^2 \Delta t - \Delta x^2)\\
+    &= c^2\Delta t - \Delta x^2. 
+  \end{align*}
+\end{proof}
+\begin{remarks}
+This allow us to calibrate the spacetime axes with respect to the invariant $\Delta s^2$.
+\end{remarks}
+\begin{defi}[Line element]
+  The line element is
+$$d s^2 = c^2 d t^2 - d x^2 - d y^2 - d z^2$$
+\end{defi}
+
+\begin{defi}[Timelike, spacelike and lightlike separation]\leavevmode
+\begin{itemize}
+  \item Events with $\Delta s^2 > 0$ are timelike separated. It is possible to find inertial frames in which the two events occur in the same position, and are purely separated by time. Timelike-separated events lie within each other's light cones and can influence one another.
+  \item Events with $\Delta s^2 < 0$ are spacelike separated. It is possible to find inertial frame in which the two events occur in the same time, and are purely separated by space. Spacelike-separated events lie out of each other's light cones and cannot influence one another.
+  \item Events with $\Delta s^2 = 0$ are lightlike or null separated. In all inertial frames, the events lie on the boundary of each other's light cones. e.g.\ different points in the trajectory of a photon are lightlike separated, hence the name.
+\end{itemize}
+\end{defi}
+\begin{defi}[4-vector]
+  A 4-vector is a four-component vector to describe an object's property in spacetime, in any inertial frame.
+\end{defi}
+\begin{defi}[4-Position]
+The coordinates of an event $P$ in frame $S$ can be written as a 4-vector $X$. We write $X=(ct,\mathbf{x})^T$ where $\mathbf{x}$ is the 3-position, i.e. $\mathbf{x}\in\mathbb{R}^3$.
+\end{defi}
+\begin{prop}
+The invariant interval between the origin and $P$ can be written as an inner product. The inner product of any two 4-vectors on the Minkowski metric $\eta$ is
+$$X\cdot X = X^T\eta X = c^2t^2 - x^2 - y^2 - z^2,\quad\eta =
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & -1 & 0 & 0\\
+    0 & 0 & -1 & 0\\
+    0 & 0 & 0 & -1
+  \end{pmatrix}$$
+4-vectors with $X\cdot X > 0$ are called timelike, and those $X \cdot X < 0$ are spacelike. If $X\cdot X = 0$, it is lightlike or null.
+\end{prop}
+\begin{defi}[Lorentz transformation]
+A Lorentz transformation is a linear transformation of the coordinates from one frame $S$ to another $S'$, represented by a $4\times 4$ tensor: $X' = \Lambda X$. Lorentz transformations can be defined as those that leave the inner product invariant, i.e. $\forall X$, $X'\cdot X' = X\cdot X)$ which implies the matrix equation
+$$\Lambda^T\eta \Lambda = \eta$$
+These also preserve $X\cdot Y$ if $X$ and $Y$ are both 4-vectors.
+\end{defi}
+\begin{prop}
+Two classes of solution to this equation are:
+$$\Lambda =
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0\\
+    0 & & R\\
+    0
+  \end{pmatrix},\quad \begin{pmatrix}
+    \gamma & -\gamma \beta & 0 & 0\\
+    -\gamma\beta & \gamma & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 1
+  \end{pmatrix}$$
+The former rotates space only and leaves time intact, where $R$ is a $3\times 3$ orthogonal matrix. For the latter, $\beta = \frac{v}{c}$, and $\gamma = 1/\sqrt{1 - \beta^2}$. Here we leave the $y$ and $z$ coordinates intact, and apply a Lorentz boost along the $x$ direction.
+\end{prop}
+\begin{remarks}
+The set of all matrices satisfying $\Lambda^T\eta\Lambda=\eta$ form the Lorentz group $O(1, 3)$. It is generated by rotations and boosts, as defined above, which includes the absurd spatial reflections and time reversal. The subgroup with $\det \Lambda = +1$ is the proper Lorentz group $SO(1, 3)$.\\[5pt]
+The subgroup that preserves spatial orientation and the direction of time is the restricted Lorentz group $SO^+(1, 3)$. Note that this is different from $SO(1, 3)$, since if you do both spatial reflection and time reversal, the determinant of the matrix is still positive. We want to eliminate those as well!
+\end{remarks}
+\begin{defi}[Rapidity]
+  The \emph{rapidity} of a Lorentz boot is $\phi$ such that
+  \[
+    \beta = \tanh \phi,\quad \gamma = \cosh\phi,\quad \gamma\beta=\sinh \phi.
+  \]
+\end{defi}
+\begin{remarks}
+Focus on the upper left $2\times 2$ matrix of Lorentz boosts in the $x$ direction. Write
+$$\Lambda[\beta] =
+  \begin{pmatrix}
+    \gamma & -\gamma\beta\\
+    -\gamma\beta & \gamma
+  \end{pmatrix}
+  ,\quad
+  \gamma = \frac{1}{\sqrt{1 - \beta^2}}$$
+Combining two boosts in the $x$ direction, we have
+$$\Lambda[\beta_1]\Lambda[\beta_2] =
+  \begin{pmatrix}
+    \gamma_1 & -\gamma_1\beta_1\\
+    -\gamma_1\beta_1 & \gamma_1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \gamma_2 & -\gamma_2\beta_2\\
+    -\gamma_2\beta_2 & \gamma_2
+  \end{pmatrix}
+  = \Lambda\left[\frac{\beta_1 + \beta_2}{1 + \beta_1\beta_2}\right]$$
+This is consistent with the idea of spatial rotations and thus add like rotation angles.
+$$\Lambda[\beta] =
+  \begin{pmatrix}
+    \cosh \phi & -\sinh \phi\\
+    -\sinh \phi & \cosh \phi
+  \end{pmatrix}
+  = \Lambda(\phi),\quad\Lambda(\phi_1)\Lambda(\phi_2) = \Lambda(\phi_1 + \phi_2)$$
+Lorentz boots are simply hyperbolic rotations in spacetime!
+\end{remarks}
+\subsection{Relativistic kinematics}
+\begin{defi}[Proper time]
+  The proper time $\tau$ is defined such that
+$$\Delta \tau = \frac{\Delta s}{c}$$
+  $\tau$ is the time experienced by the particle, i.e.\ the time in the particles rest frame, the instantaneous rest frame (IRF) of the particle.
+\end{defi}
+\begin{remarks}
+The world line of a massive particle can be parametrized using the proper time by $t(\tau)$ and $\mathbf{x}(\tau)$. Infinitesimal changes are related by
+$$d \tau = \frac{d s}{c} = \frac{1}{c}\sqrt{c^2\;d t^2 - |d \mathbf{x}|^2} = \sqrt{1 - \frac{|\mathbf{u}|^2}{c^2}}\;d t,\quad\frac{d t}{d \tau} = \gamma_u=  \gamma_u = \frac{1}{\sqrt{1 - \frac{|\mathbf{u}|^2}{c^2}}}$$
+The total time experienced by the particle along a segment of its world line is
+$$T = \int \;d \tau = \int\frac{1}{\gamma_u}\;d t$$
+\end{remarks}
+\begin{eg}[Doppler Effect]
+Consider an observer $\mathcal{E}$ who moves at speed $v$ along the $x$-axis of an inertial frame $S$ in which an observer $\mathcal{O}$ is at rest at position $x_0$. Let successive wavecrests be emitted by $\mathcal{E}$ at events A and B, which are separated by proper time $\Delta\tau_{AB}$, i.e. this is the proper period of the source. The relation between $\Delta\tau_{AB}$ and the time between the emission events in $S$ is
+$$\Delta\tau_{AB}=\sqrt{1-\frac{v^2}{c^2}}\Delta t_e$$
+The wavecrests are received by $\mathcal{O}$ at the events C and D, which are separated by time $\Delta t_o$ in $S$; since $\mathcal{O}$ is at rest in $S$, the proper time between $C$ and $D$ is $\Delta\tau_{CD}=\Delta t_o$. In time $\Delta t_e$, the source $\mathcal{E}$ moves a distance $\Delta x_e=v\Delta t_e$ along the $x$-axis in $S$, and the second wavecrest has to travel $\Delta x_e$ further than the first to be received by $\mathcal{O}$ at $x_o$. Then,
+$$\Delta t_o=\bigg(1+\frac{v}{c}\bigg)\Delta t_e$$
+so that the ratio of proper times is
+$$\frac{\Delta\tau_{AB}}{\Delta\tau_{CD}}=\frac{(1-\beta^2)^{1/2}\Delta t_e}{(1+\beta)\Delta t_e}=\sqrt{\frac{1-\beta}{1+\beta}}$$
+This ratio is also the ratio of the received frequency, as measured by $\mathcal{O}$, to the proper frequency (i.e., the frequency in the rest-frame of the source $\mathcal{E}$).
+\end{eg}
+\begin{defi}[4-velocity]
+Its 4-velocity is defined as
+$$U = \frac{d X}{d \tau} =
+    \begin{pmatrix}
+      c\frac{d t}{d \tau}\\
+      \frac{d \mathbf{x}}{d \tau}
+    \end{pmatrix}
+    = \frac{d t}{d \tau}
+    \begin{pmatrix}
+      c\\
+      \mathbf{u}
+    \end{pmatrix} = \gamma_u
+    \begin{pmatrix}
+      c\\
+      \mathbf{u}
+    \end{pmatrix},\quad\mathbf{u} = \frac{d \mathbf{x}}{d t}$$
+\end{defi}
+\begin{remarks}
+$U$ is a 4-vector because $X$ is a 4-vector and $\tau$ is a Lorentz invariant. For any 4-vector $U$, the inner product $U\cdot U = U' \cdot U'$ is Lorentz invariant, i.e.\ the same in all inertial frames. In the rest frame of the particle, $U = (c, 0)$. So $U\cdot U = c^2$. In any other frame, $Y = \gamma_u(c, \mathbf{u})$. So
+$$ Y\cdot Y = \gamma_u^2 (c^2 - |\mathbf{u}|^2) = c^2$$
+\end{remarks}
+\begin{prop}
+A particle moves with constant velocity $u\mathbf{\hat{x}}$ in frame $S$. In a frame $S'$ which moves with velocity $v\mathbf{\hat{x}}$ relative to $S$, the velocity is
+$$u'=\frac{u-v}{1-uv/c^2}$$
+\end{prop}
+\begin{proof}
+The world line of the particle in $S'$ is $x'=u't'$. In $S$, using the inverse Lorentz transformation,
+$$u = \frac{x}{t} = \frac{\gamma(x' + vt')}{\gamma(t' + (v/c^2) x')} = \frac{u't' + vt'}{t' + (v/c^2)u't'} = \frac{u' + v}{1 + u'v/c^2}$$
+This is the formula for the relativistic composition of of velocities. The inverse transformation is found by swapping $u$ and $u'$, and swapping the sign of $v$, i.e.
+$$ u' = \frac{u - v}{1 - uv/c^2}$$
+\end{proof}
+\begin{remarks}
+If instead, the particle moves with constant velocity $u_x\mathbf{\hat{x}}+u_y\mathbf{\hat{y}}$ in frame $S$, then we have
+$$u'_y=\frac{u_y}{\gamma_v(1-u_xv/c^2)}$$
+\end{remarks}
+\begin{prop}
+Consider a generic motion - not parallel to the Lorentz boost. In frame $S$, consider a particle moving with speed $u$ at an angle $\theta$ to the $x$ axis in the $xy$ plane. In $S'$, the composition of parallel velocities will give
+$$u'\cos \theta' = \frac{u\cos \theta - v}{1 - \frac{uv}{c^2}\cos \theta}$$
+while
+\[
+  \tan \theta' = \frac{u\sin \theta}{\gamma_v(u\cos \theta - v)},
+\]
+which describes aberration, a change in the direction of motion of a particle due to the motion of the observer. 
+\end{prop}
+\begin{proof}
+The 4-velocity is
+$$U =
+  \begin{pmatrix}
+    \gamma_u c\\
+    \gamma_u u\cos \theta\\
+    \gamma_u u\sin \theta\\
+    0
+  \end{pmatrix}, \quad \gamma_u = \frac{1}{\sqrt{1 - u^2/c^2}}$$
+With frames $S$ and $S'$ in standard configuration (i.e.\ origin coincide at $t = 0$, $S'$ moving in $x$ direction with velocity $v$ relative to $S$),
+\[
+  U' = \begin{pmatrix}
+    \gamma_{u'} c\\
+    \gamma_{u'} u'\cos \theta'\\
+    \gamma_{u'} u'\sin \theta'\\
+    0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \gamma_v & -\gamma_v v/c & 0 & 0\\
+    -\gamma_{v} v/c & \gamma_v & 0 & 0\\
+    0 & 0 & 1 & 0\\
+    0 & 0 & 0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \gamma_u c\\
+    \gamma_u u\cos \theta\\
+    \gamma_u u\sin \theta\\
+    0
+  \end{pmatrix}
+\]
+Instead of evaluating the whole matrix, we can divide different rows to get the desired results.
+\end{proof}
+\begin{defi}[4-acceleration]
+The 4-acceleration is defined as
+$$ A = \frac{d U}{d \tau}$$
+where
+$$U = \gamma_u
+  \begin{pmatrix}
+    c\\
+    \mathbf{u}
+  \end{pmatrix}
+\implies A = \gamma_u \frac{d U}{d t} = \gamma_u
+  \begin{pmatrix}
+    \dot{\gamma}_u c\\
+    \gamma_u \mathbf{a} + \dot{\gamma}_u \mathbf{u}.
+  \end{pmatrix},\quad
+\mathbf{\mathbf{a}} = \frac{d \mathbf{u}}{d t},~\dot{\gamma}_u = \gamma_u^3 \frac{\mathbf{a}\cdot \mathbf{u}}{c^2}$$
+\end{defi}
+\begin{prop}
+$U\cdot A=0$ in all frames.
+\end{prop}
+\begin{proof}
+In the instantaneous rest frame of a particle, $\mathbf{u} = \mathbf{0}$ and $\gamma_u = 1$. So
+$$U =
+  \begin{pmatrix}
+    c\\
+    \mathbf{0}
+  \end{pmatrix}, \quad
+  A =
+  \begin{pmatrix}
+    0\\
+    \mathbf{a}
+  \end{pmatrix}$$
+Then $U\cdot A = 0$. Since the inner product between any two 4-vector is a Lorentz invariant quantity, we have $U\cdot A = 0$ in all frames.
+\end{proof}
+\begin{remarks}
+Acceleration is not invariant in special relativity, but is however, an absolute quantity in that all observers agree whether a particle is accelerating or not.
+\end{remarks}
+\begin{eg}[Rectilinear acceleration]
+Consider a particle moving at a variable speed $u(\tau)$ along the $x$-axis in the inertial frame $S$, where $\tau$ is the particle’s proper time. Let the particle carry an accelerometer that reads $f(\tau)$ – this is the proper acceleration, the acceleration in the instantaneous rest frame of the particle at $\tau$.\\[5pt]
+In the instantaneous rest frame at $\tau$, $u'(\tau)=0$ and $\frac{du'}{dt'}=f(\tau)$; transforming back to the frame $S$, we have
+$$\frac{du}{dt}=\bigg(1-\frac{u^2}{c^2}\bigg)^{3/2}f(\tau)=\bigg(1-\frac{u^2}{c^2}\bigg)f(\tau)$$
+In terms of rapidity $\psi(\tau)$, with $u(\tau)=c\tanh\psi(\tau)$, this is $cd\psi/d\tau=f(\tau)$, so by taking $u(\tau=0)=0$, we have
+$$c\psi(\tau)=\int_0^\tau f(\tau')d\tau'$$
+To parameterise the worldline of the particle in $S$, we can use
+$$\frac{dt}{d\tau}=\gamma_u=\cosh\psi(\tau),\quad\frac{dx}{d\tau}=u\gamma_u=c\sinh\psi(\tau)$$
+Integrating these equations gives the coordinates in $S$ of the wordline, $t(\tau)$ and $x(\tau)$. Consider now the simple case of uniform or constant proper acceleration, i.e. $f=\text{const}$. The rapidity rises linearly with $\tau$, i.e. $\psi(\tau)=f\tau/c$, and the worldline is
+$$t=t_0+\frac{c}{f}\sinh\frac{f\tau}{c},\quad x=x_0+\frac{c^2}{f}\bigg(\cosh\frac{f\tau}{c}-1\bigg)$$
+where $t_0$ and $x_0$ are integration constants. Setting $ct_0=x_0=0$, we have a hyperbolic trajectory through the origin, as shown to the right, with an oblique asymptote in the future of $ct = c^2/f + x$. This means that there are regions of spacetime containing events that can never influence (i.e., communicate causally with) the accelerated particle (events to the left of the dotted line). The boundary of this region defines an event horizon of the accelerated observer.\\[5pt]
+As an example, light emitted from an object at rest at $x = 0$ in $S$ will only reach the accelerated observer if it is emitted before $t = c/f$. Moreover, the accelerated observer sees the emitted light Doppler shifted to longer and longer wavelengths as the object approaches the event horizon and is observed as $\tau\rightarrow\infty$.
+\end{eg}
+\begin{center}
+\begin{tikzpicture}
+      \draw[->] (-1,0) -- (3,0) node[right] {$x$};
+      \draw[->] (0,0) -- (0,4) node[left] {$ct$};
+      \draw[domain=-0.1:3,smooth,variable=\x,black] plot ({\x},{\x+0.1});
+      \draw[domain=1:3,smooth,variable=\x,blue] plot ({\x},{sqrt(\x^2-1)});
+      \draw (0,0) node[below]{0};
+    \end{tikzpicture}
+\end{center}
+\newpage
+\section{Differential Geometry}
+\subsection{Manifolds and Coordinates}
+\newpage
+\subsection{Vector and Tensor Algebra}
+\newpage
+\subsection{Vector and Tensor Calculus on Manifolds}
+\newpage
+\section{More on Special Relativity}
+\subsection{Minkowski Spacetime and Particle Dynamics}
+\newpage
+\subsection{Electromagnetism}
+\newpage
+\section{Spacetime Curvature}
+\newpage
+\section{Gravitational Field Equations}
+\newpage
+\section{Schwarzschild Solution}
+\newpage
+\section{Classic Tests of General Relativity}
+\newpage
+\section{Cosmology}
+\end{document}
